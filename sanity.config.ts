@@ -14,7 +14,7 @@ export default defineConfig({
   plugins: [
     structureTool(),
     googleMapsInput({
-      apiKey: "AIzaSyA79RtrPxbeFi3YpWrIqT1-vRgCARKZSPE",
+      apiKey: "get-your-own-key",
     }),
   ],
   schema: {
