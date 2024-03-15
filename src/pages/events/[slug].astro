@@ -1,0 +1,19 @@
+---
+// ./src/pages/events/[slug].astro
+
+import { sanityClient } from "sanity:client";
+import Layout from "../../layouts/Layout.astro";
+import Form from "../../components/Form";
+import { type SanityDocument } from "@sanity/client";
+
+const event = await sanityClient.fetch<SanityDocument>(
+  `*[_type == "event" && slug.current == $slug][0]`,
+  Astro.params
+);
+---
+
+<Layout title={event.name}>
+  <p>{event.description}</p>
+  <h2>{event.price}</h2>
+  <Form client:load eventId={event._id} price={event.ticketPrice} />
+</Layout>

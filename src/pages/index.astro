@@ -1,0 +1,22 @@
+---
+// ./src/pages/index.astro
+
+import { sanityClient } from "sanity:client";
+import Layout from "../layouts/Layout.astro";
+import { type SanityDocument } from "@sanity/client";
+
+const events =
+  await sanityClient.fetch<SanityDocument[]>(`*[_type == "event"]`);
+---
+
+<Layout title="Astro + Sanity">
+  <ul>
+    {
+      events.map((event) => (
+        <li>
+          <a href={`/events/${event.slug.current}`}>{event.name}</a>
+        </li>
+      ))
+    }
+  </ul>
+</Layout>
